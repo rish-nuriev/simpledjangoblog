@@ -1,0 +1,6 @@
+<h3 class="heading">Теги</h3>
+        <div class="blog-info tags">
+        {% for tag in ten_tags  %}
+            <a href="{{ tag.get_absolute_url }}"><span class="label label-success">{{tag}}</span></a>
+        {% endfor %}
+        </div>

@@ -1,0 +1,71 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Подписаться на рассылку</h3>
+        </div>
+        <div class="panel-body">
+            <div id="message"></div>
+            <form id="subscription_form" action="{% url 'subscription' %}" method="post">
+
+                {% csrf_token %}
+
+                {% for field in subscription_form %}
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+
+                <button data-url="/captcha/refresh/" class='js-captcha-refresh label label-success'>Обновить</button>
+            <hr>
+            <input type="submit" id="btn_submit" value="Подписаться" class="btn btn-info btn-sm btn-block">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $("#subscription_form").submit(function(event) {
+       event.preventDefault();
+       $('#btn_submit').val('Отправка...').attr('disabled', 'disabled')
+       $.ajax({ data: $(this).serialize(),
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                success: function(response) {
+                     $('#btn_submit').val('Подписаться').removeAttr('disabled')
+                     console.log(response);
+                     if(response['success']) {
+                         $("#message").html("<div class='alert alert-success'>Подписка создана успешно!</div>");
+                         $("#subscription_form").addClass("hidden");
+                     }
+                     if(response['error']) {
+                         var data = response['error'];
+                         var error_message = '<p>Пожалуйста исправьте следующие ошибки</p>';
+                         for (var name in data) {
+                             for (var i in data[name]) {
+                                 error_message += "<p><b>" + name + "</b>: " + data[name] + "</p>";
+                             }
+                         }
+                         $("#message").html("<div class='alert alert-danger'>" + error_message + "</div>");
+                     }
+                },
+                error: function (request, status, error) {
+                     console.log(request.responseText);
+                }
+       });
+   });
+})
+
+$('.js-captcha-refresh').click(function(){
+    $form = $(this).parents('form');
+
+    $.getJSON($(this).data('url'), {}, function(result) {
+        $('.captcha').attr('src', result['image_url']);
+        $('#id_captcha_0').val(result['key'])
+    });
+
+    return false;
+});
+
+</script>

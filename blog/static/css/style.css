@@ -1,0 +1,95 @@
+﻿/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% Free To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
+   
+    ========================================================  */
+/* =============================================================
+   GENERAL STYLES
+ ============================================================ */
+
+html, body {
+    padding-top:0px;
+    margin:0px;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height:25px;
+    font-size:14px;
+}
+
+
+.header-section {
+  background-color:#065883;
+  color:#fff;
+  padding:40px 5px;
+}
+    .header-section img {
+        max-width:150px;
+    }
+
+.spon-txt {
+    padding:40px 5px;
+    font-size:25px;
+    font-weight:800;
+}
+
+.blog-main {
+    padding:10px 5px;
+    border-bottom:2px solid #065883;
+    margin-bottom:30px;
+}
+.heading-blog {
+    font-size:30px;
+    color:#065883;
+    font-weight:800;
+    padding:30px 5px;
+    line-height:40px;
+}
+.blog-info {
+    padding:20px 5px; 
+    font-size:20px;
+    font-weight:normal;
+}
+
+.blog-info.tags {
+    padding:0; 
+    font-size:20px;
+    font-weight:normal;
+}
+
+.blog-info.tags .label{
+    font-size:60%;
+}
+
+
+.blog-info a, .blog-info a:hover {
+    text-decoration: none;
+}
+
+.blog-info .label-success:hover {
+    background-color: #428bca;
+}
+
+.blog-txt {
+    padding:20px 5px; 
+    font-family:Andalus ;
+    font-size:20px;    
+    font-weight:normal;
+}
+.set-foot {
+    padding:20px 5px;
+}
+
+/* Captcha styles start */
+img.captcha {
+    float: left; margin-right: 5px
+}
+.input-captcha {
+    width: 60%;
+}
+/* Captcha styles end */

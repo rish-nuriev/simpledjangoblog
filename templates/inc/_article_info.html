@@ -1,0 +1,14 @@
+{% load hitcount_tags %}
+
+<div class="blog-info">
+    <span class="label label-primary">{{ article.created_at|date:'Y-m-d H:i' }}</span>
+    <a href="{{ article.category.get_absolute_url }}"><span class="label label-success">{{ article.category.title }}</span></a>
+
+    {% include "inc/_tags_in_article.html" with tags=article.tags.all %}
+
+    {% if page == 'single' %}
+    <span class="label label-info">
+        Просмотров: {% get_hit_count for article %}
+    </span>
+    {% endif %}
+</div>

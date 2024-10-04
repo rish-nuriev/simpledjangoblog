@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+<div class="col-md-9" >
+    <div class="blog-main">
+        <div class="heading-blog">
+            <h1>{{ object.title }}</h1>
+        </div>
+        {% comment %} <img src="{{ article.get_photo_url }}" class="img-responsive img-rounded" /> {% endcomment %}
+        {% include "inc/_article_info.html" with article=object page='single' %}
+        {{ object.content|safe|linebreaks }}
+    </div>
+
+    {% show_similar_articles object %}
+
+    <!--BLOG MAIN SECTION END-->
+
+    {% comment %} {% include "inc/_temp_comments.html" %} {% endcomment %}
+</div>
+{% endblock content %}

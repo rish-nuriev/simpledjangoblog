@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }} :: {{ block.super }} {% endblock title %}
+
+{% block content %}
+<div class="col-md-9">
+    {% if is_paginated %}
+        {% include 'inc/_pagination.html' %}
+    {% endif %}
+    
+    {% for article in object_list %}
+    <div class="blog-main">
+        <div class="heading-blog">
+            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+        </div>
+        <a href="{{ article.get_absolute_url }}">
+            <img src="{{ article.get_photo_url }}" class="img-responsive img-rounded" />
+        </a>
+        {% include "inc/_article_info.html" with article=article page='list' %}
+
+        <div class="blog-txt">
+            {% autoescape off %}
+            <p class="card-text">{{ article.content|safe|linebreaks|truncatewords:50 }}</p>
+            {% endautoescape %}
+            <a href="{{ article.get_absolute_url }}" class="btn btn-primary">
+                Читать далее ...
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    <!--BLOG ONE END -->
+
+    {% if is_paginated %}
+        {% include 'inc/_pagination.html' %}
+    {% endif %}
+    <!--PAGING  END -->
+</div>
+{% endblock content %}
+

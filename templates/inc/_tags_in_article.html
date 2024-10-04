@@ -1,0 +1,5 @@
+{% for tag in tags %}
+<a href="{% url "tag" tag.slug %}">
+    <span class="label label-success">{{ tag.tag }}</span>
+</a>
+{% endfor %}

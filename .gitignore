@@ -1,0 +1,7 @@
+.vscode
+.pylintrc
+.env
+__pycache__/
+docker-compose.yml
+Dockerfile
+settings.py
